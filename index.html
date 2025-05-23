@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+<body>
+    <button id="hello-btn">Dire bonjour</button>
+    <p id="message"></p>
+    <script type="module">
+        import init, { greet } from "./pkg/test_wasm.js";
+        init().then(() => {
+            document.getElementById("hello-btn").onclick = () => {
+                document.getElementById("message").textContent = greet("Fabien");
+            };
+        });
+    </script>
+</body>
+</html>
