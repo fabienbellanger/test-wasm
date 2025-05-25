@@ -1,10 +1,12 @@
 # Test WASM with Rust
 
+Try [this](https://medium.com/@agnislav/wasm-rust-vite-and-pnpm-workspace-db561f77c5ca)
+
 ## Command
 
 Build for Web:
 ```bash
-wasm-pack --target web
+wasm-pack build --target web
 ```
 
 ## Run a client
