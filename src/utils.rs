@@ -30,6 +30,10 @@ extern "C" {
     #[wasm_bindgen(js_namespace = window, js_name = confirm)]
     pub fn confirm(s: &str) -> bool;
 
+    /// This function maps the `console.info` function in JavaScript.
+    #[wasm_bindgen(js_namespace = console, js_name = info)]
+    pub fn info(s: &str);
+
     /// This function maps the `console.log` function in JavaScript.
     #[wasm_bindgen(js_namespace = console, js_name = log)]
     pub fn log(s: &str);
