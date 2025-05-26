@@ -1,4 +1,3 @@
-import "../public/style.css";
 import init, { add, greet, setup } from "../pkg/test-wasm";
 
 async function init_wasm() {
