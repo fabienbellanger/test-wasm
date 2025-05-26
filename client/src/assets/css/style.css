@@ -15,13 +15,25 @@
 
 body {
   margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  place-items: center;
+  min-width: 320px;
+  max-width: 800px;
+  min-height: 100vh;
+}
+
+section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 #app {
@@ -60,6 +72,11 @@ button:focus-visible {
 }
 
 #msg {
+  font-size: 1.2em;
+}
+
+#add-result {
+  text-align: center;
   font-size: 1.2em;
 }
 

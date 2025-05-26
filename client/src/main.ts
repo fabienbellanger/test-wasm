@@ -16,7 +16,13 @@ async function init_wasm() {
   }
 
   // Test the add function
-  console.log(add(2, 3));
+  const addResult = document.getElementById("add-result");
+  const addbtn = document.getElementById("add-btn");
+  if (addResult && addbtn) {
+    addbtn.onclick = () => {
+      addResult.textContent = `2 + 3 = ${add(2, 3)}`;
+    };
+  }
 }
 
 (async () => {

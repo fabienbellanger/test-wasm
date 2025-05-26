@@ -29,3 +29,31 @@ make serve-deno
 ```
 
 Open in a browser: [http://localhost:4507](http://localhost:4507)
+
+## Debugging
+
+### TLDR
+
+The main topics for enabling DWARF debugging are:
+
+- Configure `wasm-pack` to not strip DWARF debug info via the `Cargo.toml`
+
+```toml
+[package.metadata.wasm-pack.profile.dev.wasm-bindgen]
+dwarf-debug-info = true
+```
+
+- Run `wasm-pack` with the `--dev` profile
+- Install [Chrome DevTools C++ DWARF debugging][devtools-extension] extension
+
+### Prerequisites
+
+- Install `wasm-pack`: https://rustwasm.github.io/wasm-pack/
+- Install [Chrome DevTools C++ DWARF debugging][devtools-extension] extension
+
+### Build and run demo with DWARF debug symbols
+
+Open Chrome DevTools
+
+- Go to "Sources" tab
+- Open `file://<your repo path>/src/lib.rs`

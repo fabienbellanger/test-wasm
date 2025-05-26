@@ -4,14 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Vite + TS</title>
+    <title>Vite + TS + WebAssembly</title>
 
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   </head>
   <body>
-    <input type="text" id="msg-input" placeholder="Enter your name" />
-    <button id="msg-btn">Say Hello</button>
-    <p id="msg"></p>
-    <script async type="module" src="/src/main.ts"></script>
+    <main>
+      <section>
+        <input type="text" id="msg-input" placeholder="Enter your name" />
+        <button id="msg-btn">Say Hello</button>
+        <p id="msg"></p>
+      </section>
+      <section>
+        <h3>Add result</h3>
+        <button id="add-btn">Go!</button>
+        <p id="add-result"></p>
+      </section>
+      <script async type="module" src="/src/main.ts"></script>
+    </main>
   </body>
 </html>
