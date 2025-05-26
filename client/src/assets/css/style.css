@@ -59,6 +59,10 @@ button:focus-visible {
   border-radius: 8px;
 }
 
+#msg {
+  font-size: 1.2em;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -66,6 +70,6 @@ button:focus-visible {
   }
 
   button {
-    background-color:rgb(227, 227, 227);
+    background-color: rgb(227, 227, 227);
   }
 }
