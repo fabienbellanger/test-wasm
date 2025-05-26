@@ -1,4 +1,5 @@
-mod utils;
+pub mod task;
+pub mod utils;
 
 use utils::{log, set_panic_hook};
 use wasm_bindgen::prelude::*;

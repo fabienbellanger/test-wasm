@@ -1,5 +1,5 @@
 import "./assets/css/style.css";
-import init, { add, greet, setup } from "../pkg/test-wasm";
+import init, { add, greet, setup, Task } from "../pkg/test-wasm";
 
 async function init_wasm() {
   await init();
@@ -23,6 +23,10 @@ async function init_wasm() {
       addResult.textContent = `2 + 3 = ${add(2, 3)}`;
     };
   }
+
+  // Test the TaskClass
+  const task = new Task("Test Task");
+  console.log("Task created", task);
 }
 
 (async () => {

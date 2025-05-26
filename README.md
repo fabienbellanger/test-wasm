@@ -44,12 +44,12 @@ dwarf-debug-info = true
 ```
 
 - Run `wasm-pack` with the `--dev` profile
-- Install [Chrome DevTools C++ DWARF debugging][devtools-extension] extension
+- Install [Chrome DevTools C++ DWARF debugging](https://chromewebstore.google.com/detail/cc++-devtools-support-dwa/pdcpmagijalfljmkmjngeonclgbbannb)
 
 ### Prerequisites
 
 - Install `wasm-pack`: https://rustwasm.github.io/wasm-pack/
-- Install [Chrome DevTools C++ DWARF debugging][devtools-extension] extension
+- Install [Chrome DevTools C++ DWARF debugging](https://chromewebstore.google.com/detail/cc++-devtools-support-dwa/pdcpmagijalfljmkmjngeonclgbbannb)
 
 ### Build and run demo with DWARF debug symbols
 
