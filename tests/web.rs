@@ -11,7 +11,7 @@ wasm_bindgen_test_configure!(run_in_browser);
 #[wasm_bindgen_test]
 fn test_greet() {
     assert_eq!(greet("John"), String::from("Hello, John!"));
-    assert_eq!(greet(""), String::from("Hello, !"));
+    assert_eq!(greet(""), String::from("Hello!"));
 }
 
 #[wasm_bindgen_test]

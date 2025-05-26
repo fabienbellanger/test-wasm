@@ -12,8 +12,9 @@ pub fn setup() {
 
 #[wasm_bindgen]
 pub fn greet(value: &str) -> String {
-    // alert("Hello, test-wasm!");
-
+    if value.is_empty() {
+        return "Hello!".to_string();
+    }
     format!("Hello, {}!", value)
 }
 
