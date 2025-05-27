@@ -1,6 +1,7 @@
 {
+    "editor.tabSize": 4,
     "editor.foldingImportsByDefault": true,
     "editor.formatOnSave": true,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 500
+    "files.autoSaveDelay": 1000
 }

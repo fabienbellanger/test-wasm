@@ -1,20 +1,41 @@
 //! Task module
 
+use wasm_bindgen::JsError;
 use wasm_bindgen::prelude::wasm_bindgen;
 
+/// A simple task struct that represents a task with an ID, name, and completion status.
 #[wasm_bindgen]
 pub struct Task {
+    id: uuid::Uuid,
     name: String,
     completed: bool,
 }
 
 #[wasm_bindgen]
 impl Task {
+    /// Creates a new `Task` with a unique ID and the given name.
     #[wasm_bindgen(constructor)]
     pub fn new(name: &str) -> Task {
         Task {
+            id: uuid::Uuid::new_v4(),
             name: name.to_string(),
             completed: false,
+        }
+    }
+
+    #[wasm_bindgen(getter)]
+    pub fn id(&self) -> String {
+        self.id.to_string()
+    }
+
+    #[wasm_bindgen(setter)]
+    pub fn set_id(&mut self, id: String) -> Result<(), JsError> {
+        match uuid::Uuid::parse_str(&id) {
+            Ok(uuid) => {
+                self.id = uuid;
+                Ok(())
+            }
+            Err(err) => Err(JsError::new(&format!("Invalid UUID format: {err}"))),
         }
     }
 
@@ -39,7 +60,35 @@ impl Task {
     }
 }
 
-#[wasm_bindgen]
-pub fn add_task(name: String) -> Task {
-    Task::new(&name)
+#[cfg(test)]
+mod tests {
+    #![cfg(target_arch = "wasm32")]
+
+    use super::*;
+    use wasm_bindgen_test::*;
+
+    extern crate wasm_bindgen_test;
+    wasm_bindgen_test_configure!(run_in_browser);
+
+    #[wasm_bindgen_test]
+    fn test_new_task() {
+        let task = Task::new("Test Task");
+        assert_eq!(task.name(), "Test Task");
+        assert!(!task.completed());
+    }
+
+    #[wasm_bindgen_test]
+    fn test_set_task_id() {
+        let mut task = Task::new("Test Task");
+        let new_id = uuid::Uuid::new_v4().to_string();
+        task.set_id(new_id.clone()).unwrap();
+        assert_eq!(task.id(), new_id);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_set_task_id_invalid_uuid() {
+        let mut task = Task::new("Test Task");
+        let result = task.set_id("12454".to_string());
+        assert!(result.is_err());
+    }
 }

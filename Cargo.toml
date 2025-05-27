@@ -2,7 +2,9 @@
 name = "test-wasm"
 version = "0.1.0"
 authors = ["Fabien Bellanger <fabien.bellanger@apitic.com>"]
-edition = "2018"
+edition = "2024"
+description = "A test wasm package for wasm-bindgen"
+repository = "https://github.com/fabienbellanger/test-wasm"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -11,20 +13,22 @@ crate-type = ["cdylib", "rlib"]
 default = ["console_error_panic_hook"]
 
 [dependencies]
-wasm-bindgen = "0.2.84"
+wasm-bindgen = "0.2.100"
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
 # logging them with `console.error`. This is great for development, but requires
 # all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
 # code size when deploying.
 console_error_panic_hook = { version = "0.1.7", optional = true }
+uuid = { version = "1.17.0", features = ["js", "v4"] }
 
 [dev-dependencies]
-wasm-bindgen-test = "0.3.34"
+wasm-bindgen-test = "0.3.50"
 
 [profile.release]
 # Tell `rustc` to optimize for small code size.
 opt-level = "s"
+lto = true
 
 [profile.dev]
 debug = true
