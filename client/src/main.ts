@@ -1,18 +1,18 @@
 import './assets/css/style.css'
-import init, { add, greet, setup, Task } from '../pkg/test-wasm'
+import init, * as wasm from '../pkg/test-wasm'
 
 async function init_wasm() {
     await init()
 
     // Setup WASM library
-    setup()
+    wasm.setup()
 
     const btn = document.getElementById('msg-btn')
     const input = document.getElementById('msg-input') as HTMLInputElement
     const messageElem = document.getElementById('msg')
     if (btn && input && messageElem) {
         btn.onclick = () => {
-            messageElem.textContent = greet(input.value)
+            messageElem.textContent = wasm.greet(input.value)
         }
     }
 
@@ -21,12 +21,12 @@ async function init_wasm() {
     const addbtn = document.getElementById('add-btn')
     if (addResult && addbtn) {
         addbtn.onclick = () => {
-            addResult.textContent = `2 + 3 = ${add(2, 3)}`
+            addResult.textContent = `2 + 3 = ${wasm.add(2, 3)}`
         }
     }
 
     // Test the TaskClass
-    const task = new Task('Test Task')
+    const task = new wasm.Task('Test Task')
     console.log('Task created', task)
     try {
         task.id = '12345'
