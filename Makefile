@@ -1,4 +1,4 @@
-.PHONY: wasm wasm-release serve dev release build test
+.PHONY: wasm wasm-release serve lint dev release build test
 
 wasm:
 	wasm-pack build --out-dir client/pkg/test-wasm --out-name index --target web --dev
@@ -9,6 +9,9 @@ wasm-release:
 serve:
 	cd client && npm run dev
 
+lint:
+	cd client && npm run lint
+
 dev: wasm serve
 
 release: wasm-release serve
@@ -18,3 +21,4 @@ build: wasm-release
 
 test:
 	wasm-pack test --headless --chrome
+

@@ -5,6 +5,7 @@ use wasm_bindgen::prelude::wasm_bindgen;
 
 /// A simple task struct that represents a task with an ID, name, and completion status.
 #[wasm_bindgen]
+#[derive(Debug, Clone)]
 pub struct Task {
     id: uuid::Uuid,
     name: String,
@@ -60,6 +61,32 @@ impl Task {
     }
 }
 
+#[wasm_bindgen]
+pub struct Tasks(Vec<Task>);
+
+#[wasm_bindgen]
+impl Tasks {
+    #[wasm_bindgen(constructor)]
+    pub fn new() -> Self {
+        Self(vec![])
+    }
+
+    #[wasm_bindgen]
+    pub fn list(&self) -> Vec<Task> {
+        self.0.clone()
+    }
+
+    #[wasm_bindgen]
+    pub fn add(&mut self, task: Task) {
+        self.0.push(task);
+    }
+
+    #[wasm_bindgen]
+    pub fn pop(&mut self) -> Option<Task> {
+        self.0.pop()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     #![cfg(target_arch = "wasm32")]
@@ -90,5 +117,32 @@ mod tests {
         let mut task = Task::new("Test Task");
         let result = task.set_id("12454".to_string());
         assert!(result.is_err());
+    }
+
+    #[wasm_bindgen_test]
+    fn test_new_tasks() {
+        let tasks = Tasks::new();
+        assert!(tasks.list().is_empty());
+    }
+
+    #[wasm_bindgen_test]
+    fn test_tasks_add() {
+        let mut tasks = Tasks::new();
+        let task = Task::new("My task");
+        tasks.add(task);
+
+        assert_eq!(tasks.list().len(), 1);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_tasks_pop() {
+        let mut tasks = Tasks::new();
+        let task = Task::new("My task");
+        tasks.add(task);
+
+        assert_eq!(tasks.list().len(), 1);
+
+        tasks.pop();
+        assert!(tasks.list().is_empty());
     }
 }

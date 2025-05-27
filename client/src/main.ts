@@ -35,6 +35,15 @@ async function init_wasm() {
     }
     task.name = 'Updated Task Name'
     console.log(`Task updated: ${task.name}`)
+
+    const tasks = new wasm.Tasks()
+    tasks.add(task)
+    console.log('Tasks', tasks.list())
+    const lastTask = tasks.pop()
+    if (lastTask) {
+        console.log('Removed task', lastTask)
+    }
+    console.log('Tasks', tasks.list())
 }
 
 ;(async () => {
