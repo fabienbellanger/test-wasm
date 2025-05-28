@@ -132,7 +132,7 @@ mod tests {
     fn test_tasks_add() {
         let mut tasks = Tasks::new();
         let task = Task::new("My task");
-        tasks.add(task);
+        tasks.add(&task);
 
         assert_eq!(tasks.list().len(), 1);
     }
@@ -141,7 +141,7 @@ mod tests {
     fn test_tasks_pop() {
         let mut tasks = Tasks::new();
         let task = Task::new("My task");
-        tasks.add(task);
+        tasks.add(&task);
 
         assert_eq!(tasks.list().len(), 1);
 
