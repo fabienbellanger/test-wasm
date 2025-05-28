@@ -79,7 +79,9 @@ impl Tasks {
 
     #[wasm_bindgen]
     pub fn add(&mut self, task: &Task) {
-        self.0.push(task.clone());
+        if !task.name.is_empty() {
+            self.0.push(task.clone());
+        }
     }
 
     #[wasm_bindgen]

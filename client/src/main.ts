@@ -43,25 +43,27 @@ function tasksDemo() {
         const tasks = new wasm.Tasks()
 
         addTaskBtn.onclick = () => {
-            const task = new wasm.Task(addTaskInput.value)
-            // try {
-            //     task.id = '12345'
-            // } catch (error) {
-            //     console.error(error)
-            // }
-            // task.name = addTaskInput.value
-            // console.log(`Task updated: ${task.name}`)
+            if (addTaskInput.value.length > 0) {
+                const task = new wasm.Task(addTaskInput.value)
+                // try {
+                //     task.id = '12345'
+                // } catch (error) {
+                //     console.error(error)
+                // }
+                // task.name = addTaskInput.value
+                // console.log(`Task updated: ${task.name}`)
 
-            tasks.add(task)
-            addTaskInput.value = ''
-            console.log('Tasks', tasks.list())
-            // const lastTask = tasks.pop()
-            // if (lastTask) {
-            //     console.log('Removed task', lastTask)
-            // }
-            // console.log('Tasks', tasks.list())
+                tasks.add(task)
+                addTaskInput.value = ''
+                console.log('Tasks', tasks.list())
+                // const lastTask = tasks.pop()
+                // if (lastTask) {
+                //     console.log('Removed task', lastTask)
+                // }
+                // console.log('Tasks', tasks.list())
 
-            tasksDiv.innerHTML += `<div>- ${task.name}</div>`
+                tasksDiv.innerHTML += `<div>- ${task.name}</div>`
+            }
         }
     }
 }
