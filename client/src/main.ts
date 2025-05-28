@@ -26,24 +26,44 @@ async function init_wasm() {
     }
 
     // Test the TaskClass
-    const task = new wasm.Task('Test Task')
-    console.log('Task created', task)
-    try {
-        task.id = '12345'
-    } catch (error) {
-        console.error(error)
-    }
-    task.name = 'Updated Task Name'
-    console.log(`Task updated: ${task.name}`)
+    tasksDemo()
+}
 
-    const tasks = new wasm.Tasks()
-    tasks.add(task)
-    console.log('Tasks', tasks.list())
-    const lastTask = tasks.pop()
-    if (lastTask) {
-        console.log('Removed task', lastTask)
+/**
+ * Demo for the Task class
+ *
+ */
+function tasksDemo() {
+    const addTaskInput = document.getElementById(
+        'add-task-input',
+    ) as HTMLInputElement
+    const addTaskBtn = document.getElementById('add-task-btn')
+    const tasksDiv = document.getElementById('tasks')
+    if (addTaskBtn && addTaskInput && tasksDiv) {
+        const tasks = new wasm.Tasks()
+
+        addTaskBtn.onclick = () => {
+            const task = new wasm.Task(addTaskInput.value)
+            // try {
+            //     task.id = '12345'
+            // } catch (error) {
+            //     console.error(error)
+            // }
+            // task.name = addTaskInput.value
+            // console.log(`Task updated: ${task.name}`)
+
+            tasks.add(task)
+            addTaskInput.value = ''
+            console.log('Tasks', tasks.list())
+            // const lastTask = tasks.pop()
+            // if (lastTask) {
+            //     console.log('Removed task', lastTask)
+            // }
+            // console.log('Tasks', tasks.list())
+
+            tasksDiv.innerHTML += `<div>- ${task.name}</div>`
+        }
     }
-    console.log('Tasks', tasks.list())
 }
 
 ;(async () => {

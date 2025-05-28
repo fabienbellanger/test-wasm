@@ -1,5 +1,6 @@
 //! Task module
 
+use uuid::Uuid;
 use wasm_bindgen::JsError;
 use wasm_bindgen::prelude::wasm_bindgen;
 
@@ -7,7 +8,7 @@ use wasm_bindgen::prelude::wasm_bindgen;
 #[wasm_bindgen]
 #[derive(Debug, Clone)]
 pub struct Task {
-    id: uuid::Uuid,
+    id: Uuid,
     name: String,
     completed: bool,
 }
@@ -18,7 +19,7 @@ impl Task {
     #[wasm_bindgen(constructor)]
     pub fn new(name: &str) -> Task {
         Task {
-            id: uuid::Uuid::new_v4(),
+            id: Uuid::new_v4(),
             name: name.to_string(),
             completed: false,
         }
@@ -31,7 +32,7 @@ impl Task {
 
     #[wasm_bindgen(setter)]
     pub fn set_id(&mut self, id: String) -> Result<(), JsError> {
-        match uuid::Uuid::parse_str(&id) {
+        match Uuid::parse_str(&id) {
             Ok(uuid) => {
                 self.id = uuid;
                 Ok(())
@@ -77,8 +78,8 @@ impl Tasks {
     }
 
     #[wasm_bindgen]
-    pub fn add(&mut self, task: Task) {
-        self.0.push(task);
+    pub fn add(&mut self, task: &Task) {
+        self.0.push(task.clone());
     }
 
     #[wasm_bindgen]

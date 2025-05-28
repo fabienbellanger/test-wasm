@@ -62,7 +62,8 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
-#msg-input {
+#msg-input,
+#add-task-input {
     padding: 0.5em;
     margin: 0.7em 0;
     font-size: 1.1em;
