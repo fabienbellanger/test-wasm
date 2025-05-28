@@ -4,7 +4,7 @@ import init, * as wasm from '../pkg/test-wasm'
 async function init_wasm() {
     await init()
 
-    // Setup WASM library
+    // Set up the WASM library
     wasm.setup()
 
     const btn = document.getElementById('msg-btn')
@@ -18,9 +18,9 @@ async function init_wasm() {
 
     // Test the add function
     const addResult = document.getElementById('add-result')
-    const addbtn = document.getElementById('add-btn')
-    if (addResult && addbtn) {
-        addbtn.onclick = () => {
+    const addBtn = document.getElementById('add-btn')
+    if (addResult && addBtn) {
+        addBtn.onclick = () => {
             addResult.textContent = `2 + 3 = ${wasm.add(2, 3)}`
         }
     }
